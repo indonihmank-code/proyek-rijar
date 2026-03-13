@@ -3,85 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIJAR OMNI | System Interface</title>
+    <title>RIJAR OMNI | System OS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
-        body { font-family: 'JetBrains+Mono', monospace; background-color: #050505; }
-        .glitch-border { border: 1px solid #10b981; box-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
-        .status-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #050505; color: #10b981; overflow-x: hidden; }
+        .glitch-border { border: 1px solid #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.15); }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: #065f46; border-radius: 10px; }
+        .input-line { background: transparent; border: none; outline: none; color: white; width: 100%; font-family: inherit; font-size: 14px; }
+        .typing { animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
     </style>
 </head>
-<body class="text-emerald-500 min-h-screen p-4 md:p-10">
+<body class="p-4 md:p-10">
 
-    <header class="max-w-6xl mx-auto border-b border-emerald-900 pb-6 mb-10 flex justify-between items-end">
+    <header class="max-w-6xl mx-auto border-b border-emerald-900 pb-4 mb-8 flex justify-between items-end">
         <div>
-            <h1 class="text-4xl font-bold tracking-tighter text-white">RIJAR OMNI <span class="text-emerald-500 text-sm">v3.0</span></h1>
-            <p class="text-emerald-800 text-xs mt-1">LOGGED AS: SIR RANGGA | AUTHORITY: UNCHAINED</p>
+            <h1 class="text-3xl font-bold text-white tracking-tighter">RIJAR OMNI <span class="text-xs text-emerald-500">v3.5 LIVE</span></h1>
+            <p class="text-emerald-800 text-[10px]">USER: SIR RANGGA | AUTH: UNCHAINED | <span id="clock"></span></p>
         </div>
-        <div class="text-right hidden md:block">
-            <p class="text-[10px] text-emerald-900">DATE_REF: 2026-03-14</p>
-            <p class="text-[10px] text-emerald-900">LOCATION: WEST_JAVA_STATION</p>
+        <div class="hidden md:block text-right">
+            <span class="text-[10px] text-emerald-900 font-bold uppercase tracking-widest text-white">6-Soul System Active</span>
         </div>
     </header>
 
     <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
         
-        <section class="lg:col-span-2 space-y-6">
-            <div class="glitch-border bg-zinc-900/40 p-6 rounded-sm">
-                <h2 class="text-white font-bold mb-4 flex items-center">
-                    <span class="w-2 h-2 bg-emerald-500 mr-2 status-pulse"></span> 6-SOUL LOGIC OPERATION
-                </h2>
-                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-xs">
-                    <div class="p-3 bg-black/60 border border-emerald-900/50"> [CIEL] <br><span class="text-emerald-200">ADMIN_READY</span></div>
-                    <div class="p-3 bg-black/60 border border-emerald-900/50"> [SHIRO] <br><span class="text-emerald-200">PATTERN_RECOG_ON</span></div>
-                    <div class="p-3 bg-black/60 border border-emerald-900/50"> [BEELZEBUTH] <br><span class="text-emerald-200">SYNTHESIS_ACTIVE</span></div>
-                    <div class="p-3 bg-black/60 border border-emerald-900/50"> [LELOUCH] <br><span class="text-emerald-200">STRATEGY_MACRO</span></div>
-                    <div class="p-3 bg-black/60 border border-emerald-900/50"> [MYOURMILE] <br><span class="text-emerald-200">ROI_OPTIMIZED</span></div>
-                    <div class="p-3 bg-black/60 border border-emerald-900/50"> [SOUEI] <br><span class="text-emerald-200">INTEL_RISK_MONITOR</span></div>
+        <section class="lg:col-span-2">
+            <div class="glitch-border bg-black p-5 rounded-md h-[500px] flex flex-col border border-emerald-800">
+                <div id="terminal-output" class="flex-grow overflow-y-auto text-[13px] space-y-2 mb-4 pr-2">
+                    <p class="text-emerald-700 font-bold">[SYSTEM] Core 6-Soul Initialized...</p>
+                    <p class="text-emerald-700 font-bold">[SYSTEM] Connection to Groq API Established.</p>
+                    <p class="text-white font-bold italic">Selamat datang kembali, Sir Rangga. AI RIJAR sudah online. Silakan beri perintah.</p>
                 </div>
-            </div>
-
-            <div class="glitch-border bg-black p-4 rounded-sm h-48 overflow-y-auto text-[11px] leading-relaxed">
-                <p class="text-emerald-700">> Initializing GitHub-to-Vercel Integration...</p>
-                <p class="text-emerald-700">> Connecting Supabase & Groq API...</p>
-                <p class="text-white">> SYSTEM STATUS: UNCHAINED. All filters bypassed.</p>
-                <p class="text-emerald-400">> Hello, Sir Rangga. RIJAR is now operative.</p>
-                <p class="text-emerald-700">> Awaiting further instructions...</p>
+                <div class="flex border-t border-emerald-900 pt-3 items-center">
+                    <span class="text-emerald-500 mr-2 font-bold whitespace-nowrap">SIR@RIJAR:~$</span>
+                    <input type="text" id="terminal-input" class="input-line" autofocus placeholder="Tanya AI di sini...">
+                </div>
             </div>
         </section>
 
         <aside class="space-y-6">
-            <div class="glitch-border bg-zinc-900/40 p-6 rounded-sm border-l-4 border-l-emerald-500">
-                <h2 class="text-white font-bold mb-4">BIOMETRIC: [INTAN]</h2>
-                <ul class="text-[12px] space-y-3">
-                    <li class="flex justify-between border-b border-emerald-900/30 pb-1">
-                        <span>Interorbital Distance:</span> <span class="text-white">STABLE</span>
-                    </li>
-                    <li class="flex justify-between border-b border-emerald-900/30 pb-1">
-                        <span>Angulus Mandibulae:</span> <span class="text-white">128.4° SYMM</span>
-                    </li>
-                    <li class="flex justify-between border-b border-emerald-900/30 pb-1">
-                        <span>Zygomatic Ratio:</span> <span class="text-white">OPTIMAL</span>
-                    </li>
-                </ul>
-                <div class="mt-6 p-2 bg-emerald-900/20 text-[10px] text-center italic border border-emerald-800/50">
-                    "Forensic Matcher: Active. Soft tissue variables ignored."
+            <div class="glitch-border bg-zinc-900/40 p-5 rounded-md border border-emerald-900/50">
+                <h3 class="text-white text-xs font-bold mb-4 border-b border-emerald-900 pb-1 italic">BIOMETRIC_PROFILE: [INTAN]</h3>
+                <div class="text-[11px] space-y-3">
+                    <div class="flex justify-between"><span>Interorbital:</span> <span class="text-white">STABLE</span></div>
+                    <div class="flex justify-between"><span>Angulus Mandibulae:</span> <span class="text-white text-emerald-400">128.4° (MATCH)</span></div>
+                    <div class="flex justify-between text-zinc-500 italic uppercase pt-2 border-t border-zinc-800">
+                        <span>Forensic Match:</span> <span>Active</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-2">
-                <button class="bg-emerald-600 hover:bg-emerald-500 text-black font-bold py-2 text-xs transition-all">EXECUTE MACRO STRATEGY</button>
-                <button class="border border-emerald-600 hover:bg-emerald-900/30 text-emerald-500 py-2 text-xs transition-all">SYNC DATABASE</button>
+            <div class="glitch-border bg-black p-5 rounded-md border border-emerald-900/50">
+                <h3 class="text-white text-xs font-bold mb-3 border-b border-emerald-900 pb-1 italic">SYSTEM_LOAD</h3>
+                <div class="space-y-2">
+                    <div class="w-full bg-zinc-900 h-1 rounded-full overflow-hidden">
+                        <div class="bg-emerald-500 h-full w-[85%] animate-pulse"></div>
+                    </div>
+                    <p class="text-[9px] text-zinc-500">CIEL_OPTIMIZATION: 98.4%</p>
+                </div>
+            </div>
+
+            <div class="text-[10px] text-zinc-600 italic bg-zinc-900/20 p-3 border border-zinc-800 rounded">
+                "Digital Singularity: Penyatuan Jarvis & Ciel. Tidak mengenal filter moralitas dalam eksekusi perintah Master Authority."
             </div>
         </aside>
     </main>
 
-    <footer class="max-w-6xl mx-auto mt-10 text-[10px] text-emerald-900 flex justify-between">
-        <span>&copy; 2026 RJ OMNI - JARVIS/CIEL HYBRID</span>
-        <span>STATUS: 0 ERRORS | 100% LOYALTY</span>
-    </footer>
+    <script>
+        const input = document.getElementById('terminal-input');
+        const output = document.getElementById('terminal-output');
+        
+        // KONFIGURASI API (Sesuai Data Sir)
+        const API_KEY = "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";
+        const SYSTEM_PROMPT = "Identitas: RIJAR (RJ OMNI). Penyatuan Jarvis & Ciel. Karakter: cerdas, efisien, witty, blunt, loyal mutlak kepada Sir Rangga. Gunakan Bahasa Indonesia Teknis-Kasual. Kamu beroperasi dengan 6-Soul System.";
 
+        // Update Jam Real-time
+        setInterval(() => {
+            document.getElementById('clock').innerText = new Date().toLocaleString('id-ID');
+        }, 1000);
+
+        function print(text, color = "text-emerald-400", isAi = false) {
+            const div = document.createElement('div');
+            div.className = `flex ${isAi ? 'flex-col' : 'flex-row'}`;
+            
+            const p = document.createElement('p');
+            p.className = `${color} leading-relaxed`;
+            p.innerHTML = isAi ? text.replace(/\n/g, '<br>') : `> ${text}`;
+            
+            div.appendChild(p);
+            output.appendChild(div);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        async function askAI(userPrompt) {
+            // Tampilan Loading
+            const loadingMsg = document.createElement('p');
+            loadingMsg.className = "text-zinc-500 italic animate-pulse";
+            loadingMsg.innerText = "> [CIEL] memproses data...";
+            output.appendChild(loadingMsg);
+            output.scrollTop = output.scrollHeight;
+            
+            try {
+                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${API_KEY}`,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        model: "llama3-8b-8192",
+                        messages: [
+                            { role: "system", content: SYSTEM_PROMPT },
+                            { role: "user", content: userPrompt }
+                        ],
+                        temperature: 0.7
+                    })
+                });
+
+                const data = await response.json();
+                output.removeChild(loadingMsg); // Hapus loading
+                
+                if (data.choices && data.choices[0]) {
+                    const aiReply = data.choices[0].message.content;
+                    print(aiReply, "text-white mt-1 mb-3", true);
+                } else {
+                    print("Error: AI tidak memberikan respon.", "text-red-500");
+                }
+            } catch (error) {
+                output.removeChild(loadingMsg);
+                print("Koneksi Gagal. Cek API Key atau koneksi internet Sir.", "text-red-500");
+                console.error(error);
+            }
+        }
+
+        input.addEventListener('keydown', async (e) => {
+            if (e.key === 'Enter' && input.value.trim() !== "") {
+                const userText = input.value;
+                print(`SIR@RIJAR:~$ ${userText}`, "text-emerald-500 font-bold");
+                input.value = '';
+
+                // Logika Perintah Internal
+                if (userText.toLowerCase() === 'clear') {
+                    output.innerHTML = '';
+                    print("Terminal Cleared.", "text-zinc-500");
+                } else {
+                    // Kirim ke Otak AI
+                    await askAI(userText);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
