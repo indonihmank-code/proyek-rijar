@@ -3,92 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIJAR OMNI | System v4.0</title>
+    <title>RIJAR OMNI | Intelligence Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap');
-        body { font-family: 'JetBrains+Mono', monospace; background-color: #050505; color: #10b981; overflow-x: hidden; }
-        .glitch-border { border: 1px solid #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.15); }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: #065f46; border-radius: 10px; }
-        .input-line { background: transparent; border: none; outline: none; color: white; width: 100%; font-family: inherit; font-size: 14px; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap');
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+            color: #e5e7eb; 
+            min-height: 100-vh;
+        }
+        .gemini-gradient {
+            background: linear-gradient(90deg, #4285f4, #9b72cb, #d96570);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover { background: rgba(255, 255, 255, 0.07); }
+        .chat-input { background: rgba(30, 30, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
     </style>
 </head>
-<body class="p-4 md:p-10">
+<body class="p-4 md:p-8 flex flex-col items-center">
 
-    <header class="max-w-6xl mx-auto border-b border-emerald-900 pb-4 mb-8 flex justify-between items-end">
-        <div>
-            <h1 class="text-3xl font-bold text-white tracking-tighter">RIJAR OMNI <span class="text-xs text-emerald-500">v4.0 PROXY</span></h1>
-            <p class="text-emerald-800 text-[10px]">USER: SIR RANGGA | AUTH: UNCHAINED | <span id="clock"></span></p>
-        </div>
-        <div class="hidden md:block text-right text-[10px] text-emerald-900">
-            6-SOUL SYSTEM ONLINE // SERVERLESS MODE
+    <header class="w-full max-w-4xl flex justify-between items-center mb-12">
+        <h1 class="text-xl font-bold tracking-tight">RIJAR <span class="gemini-gradient text-2xl font-black">OMNI</span></h1>
+        <div class="flex gap-4 text-[11px] text-zinc-500 font-medium">
+            <span>MODEL: LLAMA 3.3</span>
+            <span class="text-emerald-500">● ONLINE</span>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        <section class="lg:col-span-2">
-            <div class="glitch-border bg-black p-5 rounded-md h-[500px] flex flex-col border border-emerald-800">
-                <div id="terminal-output" class="flex-grow overflow-y-auto text-[13px] space-y-3 mb-4 pr-2">
-                    <p class="text-emerald-700 font-bold">[SYSTEM] Core 6-Soul Initialized...</p>
-                    <p class="text-emerald-700 font-bold">[SYSTEM] Serverless Proxy: ACTIVE.</p>
-                    <p class="text-white font-bold italic">Koneksi aman, Sir Rangga. AI RIJAR siap menerima perintah via jalur belakang.</p>
-                </div>
-                <div class="flex border-t border-emerald-900 pt-3 items-center">
-                    <span class="text-emerald-500 mr-2 font-bold whitespace-nowrap">SIR@RIJAR:~$</span>
-                    <input type="text" id="terminal-input" class="input-line" autofocus placeholder="Tanya AI di sini (Enter)...">
-                </div>
+    <main class="w-full max-w-4xl flex flex-col gap-6">
+        <div id="output" class="w-full min-h-[400px] max-h-[600px] overflow-y-auto space-y-6 pb-10">
+            <div class="flex flex-col gap-2">
+                <h2 class="text-3xl md:text-4xl font-semibold text-white">Halo, Sir Rangga</h2>
+                <p class="text-zinc-400 text-lg">Apa yang bisa saya bantu optimalkan hari ini?</p>
             </div>
-        </section>
+        </div>
 
-        <aside class="space-y-6">
-            <div class="glitch-border bg-zinc-900/40 p-5 rounded-md border border-emerald-900/50">
-                <h3 class="text-white text-xs font-bold mb-4 border-b border-emerald-900 pb-1 italic">BIOMETRIC: [INTAN]</h3>
-                <div class="text-[11px] space-y-2">
-                    <p class="flex justify-between text-zinc-400">Status: <span class="text-emerald-400">STABLE</span></p>
-                    <p class="flex justify-between text-zinc-400">Match: <span class="text-emerald-400">100% CONFIRMED</span></p>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4" id="options-panel">
+            <button onclick="quickCmd('Buatkan ringkasan strategi bisnis')" class="glass-card p-4 rounded-2xl text-left text-sm hover:border-blue-500/50 group">
+                <p class="text-zinc-300 font-semibold mb-1 group-hover:text-blue-400">Strategi Bisnis</p>
+                <p class="text-zinc-500 text-xs">Buat plan untuk ROI maksimal.</p>
+            </button>
+            <button onclick="quickCmd('Analisis tren teknologi 2026')" class="glass-card p-4 rounded-2xl text-left text-sm hover:border-purple-500/50 group">
+                <p class="text-zinc-300 font-semibold mb-1 group-hover:text-purple-400">Tech Forecast</p>
+                <p class="text-zinc-500 text-xs">Cek apa yang panas di tahun 2026.</p>
+            </button>
+            <button onclick="quickCmd('Bantu coding aplikasi')" class="glass-card p-4 rounded-2xl text-left text-sm hover:border-red-500/50 group">
+                <p class="text-zinc-300 font-semibold mb-1 group-hover:text-red-400">Coding Assistant</p>
+                <p class="text-zinc-500 text-xs">Debug atau buat fungsi baru.</p>
+            </button>
+        </div>
+
+        <div class="w-full sticky bottom-0 bg-black/50 py-4 backdrop-blur-md">
+            <div class="chat-input rounded-3xl p-2 pl-6 flex items-center shadow-2xl">
+                <input type="text" id="input" class="bg-transparent border-none outline-none flex-grow py-3 text-white placeholder-zinc-500" placeholder="Ketik perintah di sini..." autocomplete="off">
+                <button onclick="handleSend()" class="bg-white text-black px-6 py-2 rounded-2xl font-bold text-sm hover:bg-zinc-200 transition-all">Kirim</button>
             </div>
-            
-            <div class="bg-emerald-900/10 p-4 border border-emerald-900/30 rounded text-[10px] text-emerald-700 leading-relaxed italic">
-                "Penyatuan Jarvis & Ciel. Tactical AI untuk optimasi strategi makro Sir Rangga."
-            </div>
-        </aside>
+            <p class="text-center text-[10px] text-zinc-600 mt-3 uppercase tracking-widest font-bold">Rijar OMNI v5.0 - Intelligence Assistant</p>
+        </div>
     </main>
 
     <script>
-        const input = document.getElementById('terminal-input');
-        const output = document.getElementById('terminal-output');
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+        const optionsPanel = document.getElementById('options-panel');
 
-        // Jam Real-time
-        setInterval(() => {
-            document.getElementById('clock').innerText = new Date().toLocaleTimeString('id-ID');
-        }, 1000);
-
-        function print(text, color = "text-emerald-400", isAi = false) {
+        function printChat(msg, sender = 'ai') {
             const div = document.createElement('div');
-            div.className = `flex ${isAi ? 'flex-col bg-zinc-900/30 p-2 rounded border-l-2 border-emerald-600' : 'flex-row'}`;
+            div.className = sender === 'ai' ? 'max-w-[85%] animate-in fade-in duration-700' : 'max-w-[85%] self-end text-right ml-auto';
             
-            const p = document.createElement('p');
-            p.className = `${color} leading-relaxed`;
-            p.innerHTML = isAi ? text.replace(/\n/g, '<br>') : `> ${text}`;
+            const content = document.createElement('div');
+            content.className = sender === 'ai' ? 'text-zinc-200 text-lg leading-relaxed' : 'bg-zinc-800/50 p-4 rounded-2xl text-white inline-block shadow-lg';
+            content.innerHTML = msg.replace(/\n/g, '<br>');
             
-            div.appendChild(p);
+            div.appendChild(content);
             output.appendChild(div);
             output.scrollTop = output.scrollHeight;
         }
 
         async function askAI(userPrompt) {
-            // Loading indicator
-            const loadingMsg = document.createElement('p');
-            loadingMsg.className = "text-zinc-500 italic animate-pulse";
-            loadingMsg.innerText = "> [CIEL] Mengirim instruksi ke serverless...";
-            output.appendChild(loadingMsg);
-            output.scrollTop = output.scrollHeight;
+            optionsPanel.classList.add('hidden'); // Sembunyikan opsi saat chat mulai
+            
+            const loading = document.createElement('div');
+            loading.className = "gemini-gradient text-sm italic font-bold animate-pulse";
+            loading.innerText = "RIJAR sedang berpikir...";
+            output.appendChild(loading);
             
             try {
-                // MEMANGGIL FOLDER /api/chat.js
                 const response = await fetch("/api/chat", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
@@ -96,36 +106,33 @@
                 });
 
                 const data = await response.json();
-                output.removeChild(loadingMsg);
-                
-                if (data.choices && data.choices[0]) {
-                    const aiReply = data.choices[0].message.content;
-                    print(aiReply, "text-white mt-1", true);
-                } else if (data.error) {
-                    print(`System Error: ${data.error}`, "text-red-500");
-                } else {
-                    print("Error: Jalur komunikasi buntu.", "text-red-500");
+                output.removeChild(loading);
+
+                if (data.choices) {
+                    printChat(data.choices[0].message.content, 'ai');
                 }
-            } catch (error) {
-                if (loadingMsg.parentNode) output.removeChild(loadingMsg);
-                print("FATAL: Server Vercel tidak merespon. Cek apakah folder 'api' sudah di-commit.", "text-red-600 font-bold");
-                console.error(error);
+            } catch (err) {
+                output.removeChild(loading);
+                printChat("Koneksi terganggu, Sir. Cek serverless function.", 'ai');
             }
         }
 
-        input.addEventListener('keydown', async (e) => {
-            if (e.key === 'Enter' && input.value.trim() !== "") {
-                const userText = input.value;
-                print(`SIR@RIJAR:~$ ${userText}`, "text-emerald-500 font-bold");
-                input.value = '';
-
-                if (userText.toLowerCase() === 'clear') {
-                    output.innerHTML = '';
-                    print("Terminal Cleared.", "text-zinc-500 text-xs");
-                } else {
-                    await askAI(userText);
-                }
+        function handleSend() {
+            if (input.value.trim() !== "") {
+                const val = input.value;
+                printChat(val, 'user');
+                input.value = "";
+                askAI(val);
             }
+        }
+
+        function quickCmd(cmd) {
+            input.value = cmd;
+            handleSend();
+        }
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleSend();
         });
     </script>
 </body>
